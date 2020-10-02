@@ -1,32 +1,36 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
+    <el-container>
+      <el-aside class="aside" width="200px">Aside</el-aside>
+      <el-container>
+        <el-header>
+          <v-header />
+        </el-header>
+        <el-main>
+          <router-view />
+        </el-main>
+      </el-container>
+    </el-container>
   </div>
 </template>
-
-<style lang="scss">
+<script>
+import Header from "@/components/Header.vue";
+export default {
+  mounted() {},
+  components: {
+    vHeader: Header,
+  },
+};
+</script>
+<style lang="scss" scoped>
+@import "@/assets/scss";
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+  height: 100vh;
+  width: 100vw;
+  background-color: $bg-gray;
+  .aside {
+    height: 100vh;
+    background-color: $white;
   }
 }
 </style>
