@@ -6,6 +6,7 @@ import "@/axios";
 import "@/assets/css/reset.css"
 import "@/element-ui"
 import "@/element-ui/changeElementStyle.scss";
+import "animate.css";
 
 Vue.config.productionTip = false;
 
