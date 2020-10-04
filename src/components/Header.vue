@@ -65,7 +65,7 @@
       <el-button type="success" size="mini" @click="changeLocation"
         >确定</el-button
       >
-      <el-button type="primary" size="mini" @click="colseSelect"
+      <el-button type="primary" size="mini" @click="isShow = true"
         >取消</el-button
       >
     </div>
@@ -210,10 +210,6 @@ export default {
       this.getWeather();
       this.isShow = true;
     },
-    // 关闭三级联动选择
-    colseSelect() {
-      this.isShow = false;
-    },
   },
   mounted() {
     this.locationWeather();
@@ -263,8 +259,9 @@ export default {
       height: auto;
     }
     .change-btn {
-      text-decoration: underline;
       position: relative;
+      padding-left: 10px;
+      text-decoration: underline;
       &:hover {
         cursor: pointer;
         color: $jd-color;

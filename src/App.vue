@@ -78,12 +78,16 @@
                     @click.native="jumpLink(index, index_sub)"
                   >
                     <div class="item-sub">
-                      <img
-                        v-if="item_sub.imageSrc"
+                      <el-image
                         :src="item_sub.imageSrc"
                         :title="item_sub.title"
                         class="img-item"
-                      />
+                        lazy
+                      >
+                        <div slot="error" class="image-slot">
+                          <i class="el-icon-picture-outline"></i>
+                        </div>
+                      </el-image>
                       <span class="text">
                         {{ item_sub.title }}
                       </span>
@@ -165,12 +169,28 @@ export default {
     // tab变化时滚动到指定分类的高度
     scrollToCategory(tab) {
       let main = this.$refs.main;
-      main.scrollTop = this.itemsHeight[tab.index];
+      let start = main.scrollTop; // 滚动条开始的位置（起点）
+      let end = this.itemsHeight[tab.index]; // 滚动条要移动到的位置（终点）
+      clearInterval(timer);
+      let speed = parseFloat(Math.abs(start - end) / 3); // 每次移动的距离
+      // 设置定时器，每次移动speed距离
+      let timer = setInterval(() => {
+        if (start > end) {
+          start -= speed;
+          start = start <= end ? parseInt(end) : parseFloat(start);
+        } else if (start < end) {
+          start += speed;
+          start = start >= end ? parseInt(end) : parseFloat(start);
+        } else {
+          clearInterval(timer);
+        }
+        main.scrollTop = start;
+      }, 10);
     },
     // 实时监听滚动条的高度
     watchScrollTop() {
       let main = this.$refs.main;
-      let nowMainScollTop = parseInt(main.scrollTop); // 当前滚动条的高度
+      let nowMainScollTop = Math.round(main.scrollTop); // 当前滚动条的高度
       let len = this.itemsHeight.length;
       let newIndex = 0;
       for (let i = 0; i < len; i++) {
@@ -311,8 +331,16 @@ export default {
             }
             &:hover {
               cursor: pointer;
-              transform: scale(1.1);
               box-shadow: 0 0 3px #b9b8b8;
+              animation: zoom 0.8s ease-in-out;
+            }
+            @keyframes zoom {
+              50% {
+                transform: translateY(-10px);
+              }
+              100% {
+                transform: translateY(0);
+              }
             }
           }
         }
