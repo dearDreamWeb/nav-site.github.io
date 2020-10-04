@@ -78,6 +78,7 @@
           {{ wisdoms[wisdomsIndex] }}
         </span>
       </transition>
+      <span class="change-btn" @click="randomWisdom">[ 切换 ]</span>
     </div>
   </div>
 </template>
@@ -94,8 +95,11 @@ export default {
       allCitiesData: cityData, // 所有城市的省市区三级数据
       wisdoms: wisdomData, // 名言语录
       wisdomsIndex: 0, // 随机名言语录的随机数
-      wisdomShow: true, // 语录是否显示
+      wisdomShow: false, // 语录是否显示
       wisdomTime: 1000 * 30, // 语录多久随机变一次
+      wisdomTimer: null,  // 定时器1
+      wisdomTimer1: null, // 定时器2
+      wisdomTimer2: null, // 定时器3
       // 省市区的选择的下标值
       selectedCityData: {
         provinceIndex: 0,
@@ -115,15 +119,24 @@ export default {
     };
   },
   methods: {
+
     // 定期随机语录
     randomWisdom() {
+      this.wisdomTimer = null;
+      this.wisdomTimer1 = null;
+      this.wisdomTimer2 = null;
+      this.wisdomShow = false;
       let len = this.wisdoms.length;
       let index = Math.floor(Math.random() * (len + 1));
-      this.wisdomsIndex = index;
-      setInterval(() => {
-        index = Math.floor(Math.random() * (len + 1));
-        this.wisdomShow = false;
-        setTimeout(() => {
+      this.wisdomTimer2 = setTimeout(() => {
+        this.wisdomsIndex = index;
+        this.wisdomShow = true;
+      }, 1000);
+      // 每隔一段时间就随机生成下标值，生成新的语录
+      this.wisdomTimer = setInterval(() => {
+        index = Math.floor(Math.random() * (len + 1));  // 随机下标值
+        this.wisdomShow = false;           
+        this.wisdomTimer1 = setTimeout(() => {
           this.wisdomsIndex = index;
           this.wisdomShow = true;
         }, 1000);
@@ -242,6 +255,14 @@ export default {
       display: inline-block;
       width: auto;
       height: auto;
+    }
+    .change-btn {
+      text-decoration: underline;
+      position: relative;
+      &:hover {
+        cursor: pointer;
+        color: $jd-color;
+      }
     }
   }
 }
