@@ -62,8 +62,11 @@
         >
         </el-option>
       </el-select>
-      <el-button type="primary" size="mini" @click="changeLocation"
+      <el-button type="success" size="mini" @click="changeLocation"
         >确定</el-button
+      >
+      <el-button type="primary" size="mini" @click="colseSelect"
+        >取消</el-button
       >
     </div>
     <!-- 右边语录 -->
@@ -97,7 +100,7 @@ export default {
       wisdomsIndex: 0, // 随机名言语录的随机数
       wisdomShow: false, // 语录是否显示
       wisdomTime: 1000 * 30, // 语录多久随机变一次
-      wisdomTimer: null,  // 定时器1
+      wisdomTimer: null, // 定时器1
       wisdomTimer1: null, // 定时器2
       wisdomTimer2: null, // 定时器3
       // 省市区的选择的下标值
@@ -119,7 +122,6 @@ export default {
     };
   },
   methods: {
-
     // 定期随机语录
     randomWisdom() {
       this.wisdomTimer = null;
@@ -134,8 +136,8 @@ export default {
       }, 1000);
       // 每隔一段时间就随机生成下标值，生成新的语录
       this.wisdomTimer = setInterval(() => {
-        index = Math.floor(Math.random() * (len + 1));  // 随机下标值
-        this.wisdomShow = false;           
+        index = Math.floor(Math.random() * (len + 1)); // 随机下标值
+        this.wisdomShow = false;
         this.wisdomTimer1 = setTimeout(() => {
           this.wisdomsIndex = index;
           this.wisdomShow = true;
@@ -152,7 +154,7 @@ export default {
           // 是否使用高精度定位，默认：true
           enableHighAccuracy: true,
           // 设置定位超时时间，默认：无穷大
-          timeout: 10000,
+          timeout: 100000,
         });
 
         geolocation.getCurrentPosition();
@@ -207,6 +209,10 @@ export default {
       }
       this.getWeather();
       this.isShow = true;
+    },
+    // 关闭三级联动选择
+    colseSelect() {
+      this.isShow = false;
     },
   },
   mounted() {
