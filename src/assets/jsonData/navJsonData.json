@@ -305,11 +305,42 @@
   ],
   "2": [
     {
+      "id": "3d99110dda2b850909bdfba8",
+      "title": "B站",
+      "link": "https://www.bilibili.com/",
+      "imageSrc": "https://www.bilibili.com/favicon.ico"
+    },
+    {
+      "id": "def9cc4c2f07568199785283",
+      "title": "慕课网",
+      "link": "https://www.imooc.com/",
+      "imageSrc": "https://www.imooc.com/static/img/common/touch-icon-ipad.png"
+    },
+    {
+      "id": "779a9ef93a099f67796444e6",
+      "title": "腾讯课堂",
+      "link": "https://ke.qq.com/",
+      "imageSrc": "https://9.idqqimg.com/edu/edu_modules/edu-ui/img/nohash/favicon.ico"
+    },
+    {
+      "id": "3c7212a23e77434d409157ad",
+      "title": "网易云课堂",
+      "link": "https://study.163.com/",
+      "imageSrc": "https://study.163.com/favicon.ico"
+    },
+    {
+      "id": "0980974249d241acead41dc1",
+      "title": "我要自学网",
+      "link": "https://www.51zxw.net/",
+      "imageSrc": "https://www.51zxw.net/favicon.ico"
+    },
+    {
       "id": "5c22e04e79f5dabfd2a2bb84",
       "title": "W3school",
       "link": "http://www.w3school.com.cn/",
       "imageSrc": "http://images.frontendjs.com/w3school.png"
     },
+
     {
       "id": "5c22e05179f5dabfd2a2bb87",
       "title": "W3cschool",
@@ -1916,11 +1947,43 @@
       "imageSrc": ""
     }
   ],
-  "13":[   {
-    "title": "方志朋",
-    "link": "https://www.fangzhipeng.com/",
-    "imageSrc": "https://www.fangzhipeng.com/assets/images/favicon.png"
-  }],
+  "13": [
+    {
+      "title": "Martin Kleppmann",
+      "link": "http://martin.kleppmann.com/",
+      "imageSrc": ""
+    },
+    {
+      "title": "方志朋",
+      "link": "https://www.fangzhipeng.com/",
+      "imageSrc": "https://www.fangzhipeng.com/assets/images/favicon.png"
+    },
+    {
+      "title": "孤傲苍狼",
+      "link": "https://www.cnblogs.com/xdp-gacl/",
+      "imageSrc": "https://common.cnblogs.com/favicon.svg"
+    },
+    {
+      "title": "King-Blog",
+      "link": "https://blog.csdn.net/qq1175421841",
+      "imageSrc": "http://images.frontendjs.com/csdn.jpg"
+    },
+    {
+      "title": "有梦想的老王",
+      "link": "https://www.cnblogs.com/whgk/",
+      "imageSrc": "https://common.cnblogs.com/favicon.svg"
+    },
+    {
+      "title": "YSOcean",
+      "link": "https://www.cnblogs.com/ysocean/",
+      "imageSrc": "https://common.cnblogs.com/favicon.svg"
+    },
+    {
+      "title": "终点",
+      "link": "https://blog.csdn.net/zhangerqing",
+      "imageSrc": "http://images.frontendjs.com/csdn.jpg"
+    }
+  ],
   "14": [
     {
       "id": "5c22e22979f5dabfd2a2bbec",
@@ -2117,6 +2180,30 @@
       "title": "VSCode",
       "link": "https://code.visualstudio.com/",
       "imageSrc": "http://images.frontendjs.com/vscode.png"
+    },
+    {
+      "id": "d35dc313821611641e52b270",
+      "title": "IntelliJ IDEA",
+      "link": "https://www.jetbrains.com/",
+      "imageSrc": "https://www.jetbrains.com//favicon-16x16.png"
+    },
+    {
+      "id": "4d5c01842f37d90651f96937",
+      "title": "Eclipse",
+      "link": "https://www.eclipse.org/",
+      "imageSrc": "https://www.eclipse.org/eclipse.org-common/themes/solstice/public/images/favicon.ico"
+    },
+    {
+      "id": "ec85d285f9257f7a980fad41",
+      "title": "PhpStorm",
+      "link": "https://www.jetbrains.com/phpstorm/",
+      "imageSrc": "https://www.jetbrains.com//favicon-16x16.png"
+    },
+    {
+      "id": "c2a54cfd93815e79d150e730",
+      "title": "PyCharm",
+      "link": "https://www.jetbrains.com/pycharm/",
+      "imageSrc": "https://www.jetbrains.com//favicon-16x16.png"
     },
     {
       "id": "5c22e27979f5dabfd2a2bc05",
@@ -2669,11 +2756,6 @@
       "title": "家用游戏博物馆",
       "link": "http://www.famicn.com/",
       "imageSrc": "http://ilxdh.com/images/default_site_icon.png"
-    },
-    {
-      "title": "赞助会员可浏览",
-      "link": "javascript:;",
-      "imageSrc": "http://ilxdh.com/images/vip_icon.png"
     }
   ]
 }

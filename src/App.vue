@@ -1,11 +1,11 @@
 <template>
   <div id="app">
-    <el-container>
+    <el-container class="container">
       <!-- 左侧导航栏 -->
       <el-aside class="aside" width="140px">
         <img src="@/assets/images/logo.jpg" alt="logo" class="logo" />
         <el-tabs
-          tab-position="right"
+          tab-position="left"
           v-model="tabIndex"
           @tab-click="scrollToCategory"
           style="width: 100%;margin-top:20px"
@@ -72,7 +72,9 @@
                   <el-col
                     v-for="(item_sub, index_sub) in item"
                     :key="index_sub"
-                    :md="4"
+                    :lg="4"
+                    :sm="6"
+                    :xs="12"
                     :title="item_sub.title"
                     class="item-sub-wrap"
                     @click.native="jumpLink(index, index_sub)"
@@ -114,6 +116,7 @@ export default {
       navDataArr: Object.values(navJsonData), // 导航区的内容
       itemsHeight: [], // 每块区域的高度
       tabIndex: "0", // 选择的标签页的下标值
+      oldActiveName: "",
       searchVal: "",
       // 搜索选项
       searchSites: [
@@ -147,10 +150,24 @@ export default {
     };
   },
   methods: {
+    // 通过resize时间来更新数据，节流操作
+    resizeChangeData() {
+      let flag = true;
+      window.onresize = () => {
+        if (!flag) return false;
+        flag = false;
+        setTimeout(() => {
+          this.initHeight();
+          flag = true;
+        }, 500);
+      };
+    },
+
     //  初始化每块区域的高度
     initHeight() {
       let searchTop = this.$refs.search.getBoundingClientRect().top; // 搜索区域上面的高度
       let itemsArr = this.$refs.item;
+      this.itemsHeight = [];
       // 遍历导航区域，每个区域高度都要减去搜索区域上的高度才行
       itemsArr.forEach(item => {
         this.itemsHeight.push(item.getBoundingClientRect().top - searchTop);
@@ -166,6 +183,7 @@ export default {
     jumpLink(index, index_sub) {
       window.open(this.navDataArr[index][index_sub].link);
     },
+
     // tab变化时滚动到指定分类的高度
     scrollToCategory(tab) {
       let main = this.$refs.main;
@@ -187,6 +205,7 @@ export default {
         main.scrollTop = start;
       }, 10);
     },
+
     // 实时监听滚动条的高度
     watchScrollTop() {
       let main = this.$refs.main;
@@ -208,6 +227,7 @@ export default {
   mounted() {
     this.$nextTick(() => {
       this.initHeight();
+      this.resizeChangeData();
     });
   },
   components: {
@@ -225,123 +245,158 @@ export default {
   width: 100vw;
   background-color: $bg-gray;
   font-family: "SourceHanSansCN-Normal";
-  .aside {
-    height: 100vh;
-    background-color: $white;
-    &::-webkit-scrollbar {
-      display: none;
-    }
-    .logo {
-      display: block;
-      width: 100%;
-      padding: 10px 10%;
-    }
-  }
-  .main {
-    margin-left: 5%;
-    width: 90%;
-    height: calc(100vh - 60px);
-    overflow: auto;
-    &::-webkit-scrollbar {
-      display: none;
-    }
-    // 搜索区域
-    .search {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-top: 10px;
-      padding: 40px 20px;
-      background-color: $jd-color;
-      border-radius: 5px;
-      // 搜索框
-      .search-input {
-        width: 50%;
-        .icon {
-          padding-right: 20px;
-          font-size: 20px;
-          font-weight: bold;
-          &:hover {
-            cursor: pointer;
-          }
-        }
+  .container {
+    // 左侧导航栏
+    .aside {
+      height: 100vh;
+      background-color: $white;
+      &::-webkit-scrollbar {
+        display: none;
       }
-      // 搜索类型
-      .search-type {
+      .logo {
+        display: block;
+        width: 100%;
+        padding: 10px 10%;
+      }
+    }
+    // 右侧
+    .main {
+      margin-left: 5%;
+      width: 90%;
+      height: calc(100vh - 60px);
+      overflow: auto;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+      // 搜索区域
+      .search {
         display: flex;
-        justify-content: space-between;
+        flex-direction: column;
+        align-items: center;
         margin-top: 10px;
-        width: 40%;
-        color: $diy-black;
-        .search-item {
-          &:hover {
-            cursor: pointer;
-            transform: scale(1.1);
-          }
-        }
-        .selected {
-          position: relative;
-          color: $white;
-          text-shadow: 0px 0px 4px #32f3c6;
-          &::before {
-            content: "▼";
-            position: absolute;
-            display: block;
-            text-align: center;
-            top: -15px;
-            width: 100%;
-            color: $white;
-            text-shadow: none;
-          }
-        }
-      }
-    }
-    // 导航内容
-    .nav-content {
-      .title {
-        margin: 20px 0;
-        font-size: 20px;
-        .icon {
-          margin-right: 10px;
-          transform: rotateZ(90deg);
-        }
-      }
-      .item {
-        .item-sub-wrap {
-          padding: 15px 5px;
-          .item-sub {
-            display: flex;
-            align-items: center;
-            padding: 10px 5px;
-            height: 40px;
-            border-radius: 5px;
-            background-color: $white;
-            box-shadow: 0 0 3px #e8e8e8;
-            .img-item {
-              margin-right: 10px;
-              width: 20px;
-              height: 20px;
-              border-radius: 50%;
-            }
-            .text {
-              display: block;
-              word-break: keep-all;
-              text-overflow: ellipsis;
-              overflow: hidden;
-            }
+        padding: 40px 20px;
+        background-color: $jd-color;
+        border-radius: 5px;
+        // 搜索框
+        .search-input {
+          width: 50%;
+          .icon {
+            padding-right: 20px;
+            font-size: 20px;
+            font-weight: bold;
             &:hover {
               cursor: pointer;
-              box-shadow: 0 0 3px #b9b8b8;
-              animation: zoom 0.8s ease-in-out;
             }
-            @keyframes zoom {
-              50% {
-                transform: translateY(-10px);
+          }
+        }
+        // 搜索类型
+        .search-type {
+          display: flex;
+          justify-content: space-between;
+          margin-top: 10px;
+          width: 40%;
+          color: $diy-black;
+          .search-item {
+            &:hover {
+              cursor: pointer;
+              transform: scale(1.1);
+            }
+          }
+          .selected {
+            position: relative;
+            color: $white;
+            text-shadow: 0px 0px 4px #32f3c6;
+            &::before {
+              content: "▼";
+              position: absolute;
+              display: block;
+              text-align: center;
+              top: -15px;
+              width: 100%;
+              color: $white;
+              text-shadow: none;
+            }
+          }
+        }
+      }
+      // 导航内容
+      .nav-content {
+        .title {
+          margin: 20px 0;
+          font-size: 20px;
+          .icon {
+            margin-right: 10px;
+            transform: rotateZ(90deg);
+          }
+        }
+        .item {
+          .item-sub-wrap {
+            padding: 15px 5px;
+            .item-sub {
+              display: flex;
+              align-items: center;
+              padding: 10px 5px;
+              height: 40px;
+              border-radius: 5px;
+              background-color: $white;
+              box-shadow: 0 0 3px #e8e8e8;
+              .img-item {
+                margin-right: 10px;
+                width: 25px;
+                height: 25px;
+                border-radius: 50%;
               }
-              100% {
-                transform: translateY(0);
+              .text {
+                display: block;
+                height: 100%;
+                line-height: 1.2;
+                word-break: keep-all;
+                text-overflow: ellipsis;
+                overflow: hidden;
+              }
+              &:hover {
+                cursor: pointer;
+                box-shadow: 0 0 3px #b9b8b8;
+                animation: zoom 0.8s ease-in-out;
+              }
+              @keyframes zoom {
+                50% {
+                  transform: translateY(-10px);
+                }
+                100% {
+                  transform: translateY(0);
+                }
               }
             }
+          }
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    .container {
+      display: flex;
+      flex-direction: column;
+      .aside {
+        position: fixed;
+        top: 60px;
+        left: 0;
+        width: 100vw !important;
+        height: 60px;
+        .logo {
+          display: none;
+        }
+      }
+      .main {
+        margin: 60px 0 0 0;
+        width: 100vw;
+        .search {
+          .search-input {
+            width: 100%;
+          }
+          .search-type {
+            width: 90%;
           }
         }
       }

@@ -4,6 +4,19 @@
   padding: 0;
 }
 // 输入框样式
-.el-input__inner{
+.el-input__inner {
   border-radius: 33px;
+}
+
+// 移动端样式
+@media screen and (max-width: 767px) {
+  .el-tabs {
+    overflow: auto;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    .el-tabs__nav {
+      display: flex;
+    }
+  }
 }

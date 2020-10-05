@@ -268,5 +268,26 @@ export default {
       }
     }
   }
+  @media screen and (max-width: 767px) {
+    position: absolute;
+    top:0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100vw;
+    height: 60px;
+    flex-wrap: nowrap;
+    .left {
+      margin-bottom: 10px;
+    }
+    .right {
+      text-align: center;
+      width: 100%;
+      word-break: keep-all;
+      text-overflow: ellipsis;
+      overflow-x: hidden;
+    }
+  }
 }
 </style>
