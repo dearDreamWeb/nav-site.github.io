@@ -75,7 +75,7 @@
                     :lg="4"
                     :sm="6"
                     :xs="12"
-                    :title="item_sub.title"
+                    :title="item_sub.description?item_sub.description:item_sub.title"
                     class="item-sub-wrap"
                     @click.native="jumpLink(index, index_sub)"
                   >
@@ -90,9 +90,7 @@
                           <i class="el-icon-picture-outline"></i>
                         </div>
                       </el-image>
-                      <span class="text">
-                        {{ item_sub.title }}
-                      </span>
+                      <span class="text">{{ item_sub.title }}</span>
                     </div>
                   </el-col>
                 </el-row>
