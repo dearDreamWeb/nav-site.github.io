@@ -16,8 +16,8 @@ module.exports = {
     },
     devServer: {
         proxy: {
-            '/articles': {
-                target: 'https://www.csdn.net/api/articles',
+            'http://images.frontendjs.com': {
+                target: 'http://images.frontendjs.com',
                 changeOrigin: true,
             }
         }
