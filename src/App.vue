@@ -75,7 +75,11 @@
                     :lg="4"
                     :sm="6"
                     :xs="12"
-                    :title="item_sub.description?item_sub.description:item_sub.title"
+                    :title="
+                      item_sub.description
+                        ? item_sub.description
+                        : item_sub.title
+                    "
                     class="item-sub-wrap"
                     @click.native="jumpLink(index, index_sub)"
                   >
