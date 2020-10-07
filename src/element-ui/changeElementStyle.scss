@@ -17,6 +17,12 @@
     }
     .el-tabs__nav {
       display: flex;
+      .el-tabs__item{
+        color: #303133 ;
+      }
+      .is-active{
+        color: #409EFF;
+      }
     }
   }
 }

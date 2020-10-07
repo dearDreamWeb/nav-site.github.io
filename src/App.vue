@@ -21,7 +21,7 @@
       <!-- 右侧 -->
       <el-container>
         <!-- 头部 -->
-        <el-header>
+        <el-header style="height:auto">
           <v-header />
         </el-header>
         <!-- 内容区 -->
@@ -52,7 +52,7 @@
                   :key="index"
                   :class="[
                     'search-item',
-                    index === searchIndex ? 'selected' : ''
+                    index === searchIndex ? 'selected' : '',
                   ]"
                   @click="searchIndex = index"
                 >
@@ -125,30 +125,30 @@ export default {
         {
           title: "百度",
           text: "百度一下",
-          link: "https://www.baidu.com/s?wd="
+          link: "https://www.baidu.com/s?wd=",
         },
         {
           title: "Google",
           text: "Google搜索",
-          link: "https://www.google.com/search?q="
+          link: "https://www.google.com/search?q=",
         },
         {
           title: "Bing",
           text: "微软Bing搜索",
-          link: "https://cn.bing.com/search?q="
+          link: "https://cn.bing.com/search?q=",
         },
         {
           title: "知乎",
           text: "知乎搜索",
-          link: "https://www.zhihu.com/search?type=content&q="
+          link: "https://www.zhihu.com/search?type=content&q=",
         },
         {
           title: "GitHub",
           text: "GitHub搜索",
-          link: "https://github.com/search?q="
-        }
+          link: "https://github.com/search?q=",
+        },
       ],
-      searchIndex: 0 // 搜索项的下标值
+      searchIndex: 0, // 搜索项的下标值
     };
   },
   methods: {
@@ -224,7 +224,7 @@ export default {
         }
       }
       this.tabIndex = newIndex.toString();
-    }
+    },
   },
   mounted() {
     this.$nextTick(() => {
@@ -233,8 +233,8 @@ export default {
     });
   },
   components: {
-    vHeader: Header
-  }
+    vHeader: Header,
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -391,7 +391,8 @@ export default {
         }
       }
       .main {
-        margin: 60px 0 0 0;
+        margin: 120px 0 0 0;
+        height: calc(100vh - 120px);
         width: 100vw;
         .search {
           .search-input {
@@ -400,6 +401,9 @@ export default {
           .search-type {
             width: 90%;
           }
+        }
+        .nav-content {
+          margin: 0 10px;
         }
       }
     }

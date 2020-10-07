@@ -107,26 +107,26 @@ export default {
       selectedCityData: {
         provinceIndex: 0,
         cityIndex: 0,
-        districtIndex: 0
+        districtIndex: 0,
       },
       locationData: {
         province: "", // 省
         city: "", // 市
         district: "", // 县/区
-        township: "" // 镇
+        township: "", // 镇
       },
       //   天气数据
       weatherData: {},
       //   每周
-      weeks: ["周日", "周一", "周二", "周三", "周四", "周五", "周六"]
+      weeks: ["周日", "周一", "周二", "周三", "周四", "周五", "周六"],
     };
   },
   methods: {
     // 定期随机语录
     randomWisdom() {
-      this.wisdomTimer = null;
-      this.wisdomTimer1 = null;
-      this.wisdomTimer2 = null;
+      clearInterval(this.wisdomTimer);
+      clearTimeout(this.wisdomTimer1);
+      clearTimeout(this.wisdomTimer2);
       this.wisdomShow = false;
       let len = this.wisdoms.length;
       let index = Math.floor(Math.random() * (len + 1));
@@ -154,7 +154,7 @@ export default {
           // 是否使用高精度定位，默认：true
           enableHighAccuracy: true,
           // 设置定位超时时间，默认：无穷大
-          timeout: 100000
+          timeout: 1000,
         });
 
         geolocation.getCurrentPosition();
@@ -209,12 +209,12 @@ export default {
       }
       this.getWeather();
       this.isShow = true;
-    }
+    },
   },
   mounted() {
     this.locationWeather();
     this.randomWisdom();
-  }
+  },
 };
 </script>
 
@@ -225,6 +225,7 @@ export default {
   src: url("../assets/fonts/SourceHanSansCN-Normal.otf");
 }
 .header {
+  height: 60px !important;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -236,6 +237,7 @@ export default {
   font-family: "SourceHanSansCN-Normal";
   // 城市天气
   .left {
+    width: 100%;
     .change-location {
       text-decoration: underline;
       position: relative;
@@ -247,20 +249,27 @@ export default {
   }
   // 省市区三级选择
   .selectCity {
+    display: flex;
     .select {
       margin-right: 10px;
     }
   }
   // 右侧语录
   .right {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
     .text {
       display: inline-block;
       width: auto;
       height: auto;
+      text-align: left;
     }
     .change-btn {
       position: relative;
-      padding-left: 10px;
+      margin-left: 10px;
+      flex-basis: 50px;
       text-decoration: underline;
       &:hover {
         cursor: pointer;
@@ -269,7 +278,7 @@ export default {
     }
   }
   @media screen and (max-width: 767px) {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     display: flex;
@@ -280,13 +289,19 @@ export default {
     flex-wrap: nowrap;
     .left {
       margin-bottom: 10px;
+      text-align: center;
     }
     .right {
-      text-align: center;
+      display: flex;
+      justify-content: center;
+      text-align: left;
       width: 100%;
-      word-break: keep-all;
-      text-overflow: ellipsis;
-      overflow-x: hidden;
+      .text {
+        flex-flow: 1;
+      }
+      &::-webkit-scrollbar {
+        display: none;
+      }
     }
   }
 }
