@@ -107,18 +107,18 @@ export default {
       selectedCityData: {
         provinceIndex: 0,
         cityIndex: 0,
-        districtIndex: 0,
+        districtIndex: 0
       },
       locationData: {
         province: "", // 省
         city: "", // 市
         district: "", // 县/区
-        township: "", // 镇
+        township: "" // 镇
       },
       //   天气数据
       weatherData: {},
       //   每周
-      weeks: ["周日", "周一", "周二", "周三", "周四", "周五", "周六"],
+      weeks: ["周日", "周一", "周二", "周三", "周四", "周五", "周六"]
     };
   },
   methods: {
@@ -154,7 +154,7 @@ export default {
           // 是否使用高精度定位，默认：true
           enableHighAccuracy: true,
           // 设置定位超时时间，默认：无穷大
-          timeout: 100000,
+          timeout: 100000
         });
 
         geolocation.getCurrentPosition();
@@ -209,12 +209,12 @@ export default {
       }
       this.getWeather();
       this.isShow = true;
-    },
+    }
   },
   mounted() {
     this.locationWeather();
     this.randomWisdom();
-  },
+  }
 };
 </script>
 
@@ -270,7 +270,7 @@ export default {
   }
   @media screen and (max-width: 767px) {
     position: absolute;
-    top:0;
+    top: 0;
     left: 0;
     display: flex;
     flex-direction: column;
