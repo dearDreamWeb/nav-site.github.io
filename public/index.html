@@ -5,8 +5,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <meta name="keywords" content="程序员导航,程序员工具箱,开发者导航,GifFox,程序猿IT导航,,Html5网址导航,前端导航,后端导航,前端程序猿导航,后端程序猿导航,码农导航,面试,设计导航网站"> 
-  <meta name="Description" content="轩辕导航网站，less is more ，助力程序员开发者的成长！"> 
+  <meta name="keywords" content="程序员导航,程序员工具箱,开发者导航,GifFox,程序猿IT导航,,Html5网址导航,前端导航,后端导航,前端程序猿导航,后端程序猿导航,码农导航,面试,设计导航网站">
+  <meta name="Description" content="轩辕导航网站，less is more ，助力程序员开发者的成长！">
   <meta name="baidu-site-verification" content="code-MsMIylfhyp" />
   <link rel="icon" href="<%= BASE_URL %>favicon.png">
   <title><%= htmlWebpackPlugin.options.title %></title>
@@ -22,6 +22,20 @@
   <!-- 引入高德API -->
   <script type="text/javascript"
     src="https://webapi.amap.com/maps?v=1.4.15&key=84b770bc352b74056e4a1a21f3c8d109"></script>
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
 </body>
 
 </html>
