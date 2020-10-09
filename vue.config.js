@@ -12,13 +12,5 @@ module.exports = {
       args[0].title = "轩辕导航";
       return args;
     });
-  },
-  devServer: {
-    proxy: {
-      "http://images.frontendjs.com": {
-        target: "http://images.frontendjs.com",
-        changeOrigin: true
-      }
-    }
   }
 };
