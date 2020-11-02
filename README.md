@@ -1,7 +1,5 @@
-# 项目预览
-项目打包部署到了码云上。    
-
-<a href="http://flyingwxb.gitee.io/nav-site.gitee.io" target="_blank">码云版预览地址</a>
+# 项目地址
+项目地址：[http://nav.blogwxb.cn](http://nav.blogwxb.cn)
 
 # 奇迹导航
 vue2.x和element-ui开发的导航网站。

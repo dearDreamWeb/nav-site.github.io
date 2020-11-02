@@ -100,6 +100,14 @@
                 </el-row>
               </div>
             </div>
+            <div class="bsz">
+              <span id="busuanzi_container_site_pv"
+                >本站总访问量<span id="busuanzi_value_site_pv"></span>次</span
+              >
+              <span id="busuanzi_container_site_uv">
+                本站访客数<span id="busuanzi_value_site_uv"></span>人
+              </span>
+            </div>
           </main>
         </el-main>
       </el-container>
@@ -267,6 +275,8 @@ export default {
       width: 90%;
       height: calc(100vh - 60px);
       overflow: auto;
+      scrollbar-width: none; /* firefox */
+      -ms-overflow-style: none; /* IE 10+ */
       &::-webkit-scrollbar {
         display: none;
       }
@@ -373,6 +383,29 @@ export default {
           }
         }
       }
+      .bsz {
+        display: block !important;
+        margin: 20px 0;
+        padding: 15px 0;
+        text-align: center;
+        border-radius: 5px;
+        background-color: #efefef;
+        box-shadow: 0 0 1px 1px #dcd9d9;
+        #busuanzi_container_site_pv {
+          padding-right: 20px;
+          #busuanzi_value_site_pv {
+            padding: 0 10px;
+            color: #f78055;
+          }
+        }
+        #busuanzi_container_site_uv {
+          // padding-right: 20px;
+          #busuanzi_value_site_uv {
+            padding: 0 10px;
+            color: #f78055;
+          }
+        }
+      }
     }
   }
 
@@ -404,6 +437,10 @@ export default {
         }
         .nav-content {
           margin: 0 10px;
+        }
+        #busuanzi_container_site_pv {
+          display: block !important;
+          padding-bottom: 10px;
         }
       }
     }
