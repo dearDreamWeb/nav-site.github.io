@@ -49,14 +49,29 @@
               <ul class="search-type">
                 <li
                   v-for="(item, index) in searchSites"
+                  class="item-box"
                   :key="index"
-                  :class="[
-                    'search-item',
-                    index === searchIndex ? 'selected' : '',
-                  ]"
-                  @click="searchIndex = index"
                 >
-                  {{ item.title }}
+                  <div
+                    @click="searchIndex = index"
+                    :class="[
+                      'search-item',
+                      index === searchIndex ? 'selected' : ''
+                    ]"
+                  >
+                    {{ item.title }}
+                  </div>
+                  <div
+                    :class="[
+                      'setting-default',
+                      index === defaultSearchIndex
+                        ? 'setting-default-selected'
+                        : ''
+                    ]"
+                    @click="settingDefault(index)"
+                  >
+                    设置为默认
+                  </div>
                 </li>
               </ul>
             </div>
@@ -133,30 +148,31 @@ export default {
         {
           title: "百度",
           text: "百度一下",
-          link: "https://www.baidu.com/s?wd=",
+          link: "https://www.baidu.com/s?wd="
         },
         {
           title: "Google",
           text: "Google搜索",
-          link: "https://www.google.com/search?q=",
+          link: "https://www.google.com/search?q="
         },
         {
           title: "Bing",
           text: "微软Bing搜索",
-          link: "https://cn.bing.com/search?q=",
+          link: "https://cn.bing.com/search?q="
         },
         {
           title: "知乎",
           text: "知乎搜索",
-          link: "https://www.zhihu.com/search?type=content&q=",
+          link: "https://www.zhihu.com/search?type=content&q="
         },
         {
           title: "GitHub",
           text: "GitHub搜索",
-          link: "https://github.com/search?q=",
-        },
+          link: "https://github.com/search?q="
+        }
       ],
       searchIndex: 0, // 搜索项的下标值
+      defaultSearchIndex: 0 // 默认搜索项的下标值
     };
   },
   methods: {
@@ -233,16 +249,30 @@ export default {
       }
       this.tabIndex = newIndex.toString();
     },
+    // 设置默认搜索引擎
+    settingDefault(index) {
+      this.defaultSearchIndex = index;
+      window.localStorage.setItem("defaultSearch", index);
+    },
+    /**
+     * 获取默认搜索引擎
+     */
+    getDefaultSearch() {
+      const index = Number(window.localStorage.getItem("defaultSearch")) || 0;
+      this.searchIndex = index;
+      this.defaultSearchIndex = index;
+    }
   },
   mounted() {
     this.$nextTick(() => {
+      this.getDefaultSearch();
       this.initHeight();
       this.resizeChangeData();
     });
   },
   components: {
-    vHeader: Header,
-  },
+    vHeader: Header
+  }
 };
 </script>
 <style lang="scss" scoped>
@@ -308,12 +338,37 @@ export default {
           margin-top: 10px;
           width: 40%;
           color: $diy-black;
-          .search-item {
+          .item-box {
+            position: relative;
+            .search-item {
+              position: relative;
+              z-index: 1;
+              &:hover {
+                cursor: pointer;
+                transform: scale(1.1);
+              }
+            }
             &:hover {
+              .setting-default {
+                display: block;
+              }
+            }
+            .setting-default {
+              display: none;
+              position: absolute;
+              left: 50%;
+              top: 0;
+              padding-top: 24px;
+              transform: translateX(-50%);
+              font-size: 12px;
+              width: 60px;
               cursor: pointer;
-              transform: scale(1.1);
+              &.setting-default-selected {
+                color: $white;
+              }
             }
           }
+
           .selected {
             position: relative;
             color: $white;
