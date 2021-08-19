@@ -33,6 +33,7 @@
             <div class="search" ref="search">
               <el-input
                 class="search-input"
+                autofocus
                 v-model="searchVal"
                 :placeholder="searchSites[searchIndex].text"
                 size="normal"
