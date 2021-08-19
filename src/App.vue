@@ -203,7 +203,8 @@ export default {
     // 跳转到搜索引擎
     jumpSearch() {
       if (this.searchVal) {
-        window.open(this.searchSites[this.searchIndex].link + this.searchVal);
+        window.location.href =
+          this.searchSites[this.searchIndex].link + this.searchVal;
       }
     },
     // 跳转链接
